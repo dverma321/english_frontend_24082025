@@ -1,0 +1,102 @@
+/* Navbar container */
+nav {
+  background-color: rgba(255, 255, 255, 0.9); /* Light background with opacity */
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+
+/* Flex container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* Brand / Logo */
+.text-blue-gray-500 {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+/* Desktop navigation links */
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+ul li {
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 12px;
+}
+
+.nav-link {
+  text-decoration: none;
+  color: #1f2937;
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+.nav-link:hover {
+  color: #007bff;
+}
+
+/* Mobile menu */
+.mobile-menu {
+  background-color: #ffffff;
+  position: absolute;
+  top: 80px;
+  left: 0;
+  width: 100%;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+}
+
+.mobile-menu ul {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mobile-menu li {
+  width: 100%;
+  text-align: center;
+  padding: 10px 0;
+}
+
+/* .mobile-menu .nav-link {
+  width: 100%;
+  display: block;
+  padding: 10px 0;
+} */
+
+.mobile-menu .nav-link {
+  display: flex;  /* Change from block to flex for inline alignment */
+  align-items: center;  /* Align icon and text in a row */
+  justify-content: center; /* Center items in the available space */
+  width: auto; /* Remove full width to keep items compact */
+  padding: 10px;
+  gap: 5px; /* Adjust spacing between icon and text */
+}
+
+.mobile-menu img {
+  width: 20px; /* Set a fixed icon size */
+  height: 20px;
+}
+
+/* Hamburger Icon */
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+button:focus {
+  outline: none;
+}

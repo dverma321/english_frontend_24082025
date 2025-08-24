@@ -1,0 +1,101 @@
+/* Default Styles for Large Screens */
+.email_main_container {
+  margin-top: 1%;
+  width: 98%;
+  padding: 1%;
+  overflow: hidden;
+  /* Prevents unnecessary overflow */
+}
+
+.table-responsive {
+  width: 96%;
+  overflow-x: auto;
+  /* Enables horizontal scrolling on smaller screens */
+  padding: 1%;
+  margin: 1%;
+
+}
+
+.table {
+  width: 98%;
+  min-width: 600px;
+  /* Ensures table is wide enough to scroll */
+  border-collapse: collapse;
+  white-space: nowrap;
+  /* Prevents text from wrapping inside cells */
+  border: 2px solid black;
+
+}
+
+.table th,
+.table td {
+  padding: 10px;
+  border: 1px solid #ddd;
+  text-align: left;
+}
+
+.thead-dark th {
+  background: #343a40;
+  color: white;
+}
+
+/* Fix Reply Button Alignment */
+.reply-container {
+  display: flex;
+  flex-direction: column; /* Stack input and button vertically */
+  gap: 5px; /* Add space between input and button */
+  min-width: 200px; /* Prevents it from shrinking too much */
+ 
+}
+
+.replyButton{
+  color: white;
+  background-color: rgba(0,255,0, 0.5);
+  padding: 1%;
+  margin: 1%;
+  text-transform: uppercase;
+}
+
+.replyButton:hover{
+  background-color: rgba(0, 255, 0, 1);
+}
+
+.deleteButton{
+  color: white;
+  background-color: rgba(255,0,0, 0.5);
+  padding: 1%;
+  margin: 1%;
+  min-width: 100px;
+}
+
+.deleteButton:hover{
+  background-color: rgba(255,0, 0, 1);
+}
+
+/* ✅ Responsive Styles */
+@media (max-width: 1024px) {
+  .email_main_container {
+    width: 90%;
+  }
+}
+
+@media (max-width: 768px) {
+  .email_main_container {
+    width: 95%;
+  }
+}
+
+@media (max-width: 480px) {
+  .email_main_container {
+    margin-top: 10%;
+    width: 100%;
+
+  }
+
+  .table {
+    min-width: 500px;
+    width: 100%;
+    padding: 1%;
+    margin: 1%;
+  }
+}

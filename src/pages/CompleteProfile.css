@@ -1,0 +1,57 @@
+/* Center the form vertically and horizontally */
+.container {
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+  margin-top: 150px;
+}
+
+/* Heading */
+h2 {
+  font-weight: 600;
+  color: #333333;
+}
+
+/* Form labels */
+.form-label {
+  font-weight: 500;
+  color: #555;
+}
+
+/* Input focus effect */
+.form-control:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Alert styling */
+.alert-danger {
+  background-color: #f8d7da;
+  border-color: #f5c6cb;
+  color: #721c24;
+  padding: 0.75rem 1rem;
+  margin-bottom: 1rem;
+  border-radius: 5px;
+}
+
+/* Submit button */
+.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  background-color: #0b5ed7;
+  border-color: #0a58ca;
+}
+
+/* Responsive spacing */
+@media (max-width: 576px) {
+  .container {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+}

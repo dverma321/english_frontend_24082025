@@ -1,0 +1,140 @@
+
+@font-face {
+  font-family: "KrutiDev";
+  src: url("/fonts/KrutiDev010.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+.vocab-hindi-font {
+  font-family: "KrutiDev", sans-serif;
+  /* Optional tweaks */
+  font-variant-ligatures: none;
+  font-feature-settings: "liga" 0, "clig" 0;
+  letter-spacing: 0;      /* Kruti Dev often expects no extra spacing */
+  line-height: 1.2;       /* Adjust if text looks cramped */
+  color: darkred;
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+/* Container */
+.container {
+  max-width: 700px;
+  margin: auto;
+}
+
+/* Table styling */
+.table {
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.table th,
+.table td {
+  vertical-align: middle;
+  text-align: center;
+  padding: 12px;
+  font-size: 16px;
+}
+
+.table-dark th {
+  background-color: #343a40 !important;
+  color: #ffffff !important;
+  font-weight: 600;
+}
+
+
+/* Buttons */
+.btn-sm {
+  padding: 5px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-sm:hover {
+  transform: scale(1.05);
+}
+
+.btn-primary {
+  background-color: #007bff;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+
+.btn-success {
+  background-color: #28a745;
+  border: none;
+}
+
+.btn-success:hover {
+  background-color: #1e7e34;
+}
+
+.btn-secondary {
+  background-color: #6c757d;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background-color: #545b62;
+}
+
+/* Heading */
+h2 {
+  font-weight: 700;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+
+/* 🔍 Search box wrapper */
+
+.mb-3 {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+/* 🔍 Input field styling */
+.mb-3 .form-control {
+  max-width: 500px;       /* keeps it centered and not too wide */
+  padding: 10px 15px;
+  border: 2px solid lightgreen; /* purple border */
+  border-radius: 30px;    /* rounded pill shape */
+  font-size: 16px;
+  transition: all 0.3s ease-in-out;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+/* On focus effect */
+.mb-3 .form-control:focus {
+  border-color: #3f3dff;
+  outline: none;
+  box-shadow: 0 0 8px rgba(63, 61, 255, 0.5);
+}
+
+/* Placeholder style */
+.mb-3 .form-control::placeholder {
+  color: #999;
+  font-style: italic;
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  .table th,
+  .table td {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  h2 {
+    font-size: 1.4rem;
+  }
+}

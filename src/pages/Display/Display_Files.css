@@ -1,0 +1,8 @@
+.displayBackgroundImage {
+    background-image: url("./images/white_green_rose.jpg");
+    background-size: cover; /* Ensures the image covers the container */
+    /* background-repeat: no-repeat;  */
+    background-position: center; /* Centers the image */
+    height: 100vh; /* Optional: Full height of the viewport */
+    width: 100%; /* Optional: Full width */
+  }
