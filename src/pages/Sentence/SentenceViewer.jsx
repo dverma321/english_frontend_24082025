@@ -208,15 +208,40 @@ const SentenceViewer = () => {
             ))}
 
             {/* Pagination */}
-            <div className="pagination">
-              <button onClick={() => setPage(p => Math.max(1, p - 1))} disabled={page === 1}>
+
+            <div className="flex items-center justify-center space-x-4 mt-6">
+              {/* Previous Button */}
+              <button
+                onClick={() => setPage(p => Math.max(1, p - 1))}
+                disabled={page === 1}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition
+                  ${page === 1
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700"}`}
+              >
                 ⬅️ Previous
               </button>
-              <span>Page {page} of {totalPages}</span>
-              <button onClick={() => setPage(p => Math.min(totalPages, p + 1))} disabled={page === totalPages}>
+
+              {/* Page Info */}
+              <span className="text-gray-700 font-medium">
+                Page {page} of {totalPages}
+              </span>
+
+              {/* Next Button */}
+              <button
+                onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                disabled={page === totalPages}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition
+                  ${page === totalPages
+                    ? "bg-gray-200 text-gray-400 cursor-not-allowed"
+                    : "bg-blue-600 text-white hover:bg-blue-700"}`}
+              >
                 Next ➡️
               </button>
             </div>
+
+
+
 
             {/* Login prompt for limited users */}
             {!isLoggedIn && totalPages >= 5 && (
