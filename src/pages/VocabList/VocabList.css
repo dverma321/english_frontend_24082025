@@ -6,6 +6,14 @@
   font-display: swap;
 }
 
+
+.vocab-app {
+  max-width: 700px;
+  margin: auto;
+  /* position: relative; */
+  /* height: 100vh; */
+}
+
 /* Hindi text */
 .vocab-app .vocab-hindi-font {
   font-family: "KrutiDev", sans-serif;
@@ -30,18 +38,14 @@
    📌 Layout + Header
 ================================= */
 
-.vocab-app {
-  max-width: 700px;
-  margin: auto;
-  position: relative;
-  height: 100vh;
-}
 
 .vocab-app .sticky-header {
-  position: relative;         /* always fixed at top */
-  top: 0;  
+  position: relative;
+  /* always fixed at top */
+  top: 0;
   background: #fff;
-  z-index: 200;            /* above table */
+  z-index: 200;
+  /* above table */
   padding: 1rem;
   border-bottom: 2px solid #eee;
   text-align: center;
@@ -55,10 +59,10 @@
 
 /* Make only the table scrollable */
 .vocab-app .table-wrapper {
-  max-height: 100vh; 
-  overflow-y: auto;      /* table scrolls */
+
+  overflow-y: auto;
   border-radius: 6px;
-  border: 1px solid #ddd;
+
 }
 
 /* ===============================
@@ -79,6 +83,21 @@
   box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
 }
 
+/* Pagination wrapper fix */
+.vocab-app .pagination-container {
+  display: flex;
+  margin-top: 1.5rem;
+  padding: 0.8rem;
+  background: #fff;
+  clear: both;
+  z-index: 150;
+  flex-direction: row;     /* buttons & text stacked */  
+  justify-content: center;    /* center vertically in container */
+  align-items: center;        /* center horizontally */
+  text-align: center;
+}
+
+
 /* ===============================
    📌 Table Styling
 ================================= */
@@ -88,19 +107,23 @@
   width: 100%;
   margin-bottom: 1rem;
   font-size: 0.95rem;
-  table-layout: auto;      /* 🔑 columns auto-size based on content */
-  word-wrap: break-word;   /* wrap long words */
+  table-layout: auto;
+  /* 🔑 columns auto-size based on content */
+  word-wrap: break-word;
+  /* wrap long words */
   max-height: 100vh;
-  
+
 }
 
 /* Ensure table header also sticks when scrolling inside wrapper */
-.vocab-app .table thead  {
+.vocab-app .table thead {
   position: sticky;
-  top: 0;                /* relative to wrapper */
+  top: 0;
+  /* relative to wrapper */
   background: #212529;
   color: #fff;
-  z-index: 101;          /* above rows but below image */
+  z-index: 101;
+  /* above rows but below image */
 }
 
 
@@ -109,7 +132,8 @@
   vertical-align: middle;
   text-align: left;
   padding: 0.5rem;
-  white-space: normal;     /* allow wrapping instead of forcing single line */
+  white-space: normal;
+  /* allow wrapping instead of forcing single line */
 }
 
 .vocab-app .table thead th {
@@ -156,14 +180,17 @@
 .btn-primary {
   background-color: #0d6efd;
 }
+
 .btn-primary:hover {
   background-color: #0b5ed7;
   transform: translateY(-2px);
 }
+
 .btn-primary:active {
   background-color: #0a58ca;
   transform: translateY(0);
 }
+
 .btn-primary:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
@@ -174,14 +201,17 @@
 .btn-secondary {
   background-color: #6c757d;
 }
+
 .btn-secondary:hover {
   background-color: #5c636a;
   transform: translateY(-2px);
 }
+
 .btn-secondary:active {
   background-color: #545b62;
   transform: translateY(0);
 }
+
 .btn-secondary:disabled {
   background-color: #adb5bd;
   cursor: not-allowed;
@@ -192,23 +222,43 @@
 .btn-success {
   background-color: #198754;
 }
+
 .btn-success:hover {
   background-color: #157347;
   transform: translateY(-2px);
 }
+
 .btn-success:active {
   background-color: #146c43;
   transform: translateY(0);
 }
+
 .btn-success:disabled {
   background-color: #6c757d;
   cursor: not-allowed;
   opacity: 0.65;
 }
 
+
+
+/* ===============================
+   📌 Edit Mode Inputs
+================================= */
+.vocab-app .input-blue-focus:focus {
+  border: 2px solid #1976d2 !important;
+  box-shadow: 0 0 6px rgba(25, 118, 210, 0.3);
+}
+
+.vocab-app .input-red-focus:focus {
+  border: 2px solid #d32f2f !important;
+  box-shadow: 0 0 6px rgba(211, 47, 47, 0.3);
+}
+
+
 /* 📱 Mobile: convert table into block layout */
 
 @media (max-width: 768px) {
+
   .vocab-app .table,
   .vocab-app .table thead,
   .vocab-app .table tbody,
@@ -260,51 +310,25 @@
     font-size: 0.9rem;
   }
 
-}
+  .table-wrapper {
+    display: block;
+    /* force it to act like a block container */
+    width: 100%;
+    overflow: visible;
+    /* don't clip children */
+    position: relative;
+    margin-bottom: 2rem;
+    /* ⬅️ creates space for pagination */
+  }
+
+  .vocab-app .pagination-wrapper {
+    flex-direction: column;
+    gap: 0.8rem;
+    text-align: center;
+    justify-content: center;
+    
+  }
 
 
-/* 📱 Responsive handling */
-@media (max-width: 768px) {
- 
-  
-}
-
-
-/* ===============================
-   📌 Edit Mode Inputs
-================================= */
-.vocab-app .input-blue-focus:focus {
-  border: 2px solid #1976d2 !important;
-  box-shadow: 0 0 6px rgba(25,118,210,0.3);
-}
-
-.vocab-app .input-red-focus:focus {
-  border: 2px solid #d32f2f !important;
-  box-shadow: 0 0 6px rgba(211,47,47,0.3);
-}
-
-/* ===============================
-   📌 Pagination
-================================= */
-.vocab-app .pagination {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-top: 1.5rem;
-}
-
-.vocab-app .pagination button {
-  min-width: 90px;
-  padding: 0.6rem 1rem;
-  font-size: 0.9rem;
-  font-weight: 500;
-  border-radius: 6px;
-  transition: all 0.3s ease;
-}
-
-.vocab-app .pagination span {
-  font-weight: 600;
-  font-size: 0.95rem;
-  color: #37474f;
 }
 
