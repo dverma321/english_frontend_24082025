@@ -44,7 +44,6 @@ const WordList = () => {
   }, [page]);
 
   // ✅ Search vocab from backend
-
   useEffect(() => {
     const fetchSearchResults = async () => {
       if (searchTerm.trim() === "") {
@@ -64,7 +63,6 @@ const WordList = () => {
 
     fetchSearchResults();
   }, [searchTerm, words]);
-
 
   // ✅ Save Hindi + Pronunciation
   const handleSave = async (word) => {
@@ -100,6 +98,8 @@ const WordList = () => {
 
   return (
     <div className="container mt-4 vocab-app">
+
+      {/* Sticky Header */}
       <div className="sticky-header">
         <div className="image-container">
           <img
@@ -109,18 +109,15 @@ const WordList = () => {
         </div>
 
         {token ? (
-          <>
-            {/* 🔍 Search Box */}
-            <div className="mb-3 search-box">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Search word, synonym or antonym"
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-              />
-            </div>
-          </>
+          <div className="mb-3 search-box">
+            <input
+              type="text"
+              className="form-control"
+              placeholder="Search word, synonym or antonym"
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+            />
+          </div>
         ) : (
           <p className="text-center text-red-600 font-medium my-4">
             🔑 Login to filter and More Vocabs...
@@ -217,12 +214,12 @@ const WordList = () => {
         </table>
       </div>
 
-      {/* ✅ Pagination OUTSIDE table wrapper */}
+      {/* ✅ Pagination completely OUTSIDE the scrollable table */}
       {token && (
-        <div className="flex justify-between items-center mt-6">
+        <div className="pagination-container">
           <button
             className={`px-4 py-2 rounded-lg border text-sm font-medium transition
-          ${page === 1
+            ${page === 1
                 ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
                 : "bg-white text-blue-600 border-blue-500 hover:bg-blue-50 active:bg-blue-100"
               }`}
@@ -232,13 +229,13 @@ const WordList = () => {
             Previous
           </button>
 
-          <span className="text-gray-700 font-semibold">
+          <span className="mx-3 text-gray-700 font-semibold">
             Page {page} of {totalPages}
           </span>
 
           <button
             className={`px-4 py-2 rounded-lg border text-sm font-medium transition
-          ${page === totalPages
+            ${page === totalPages
                 ? "bg-gray-200 text-gray-400 border-gray-300 cursor-not-allowed"
                 : "bg-white text-blue-600 border-blue-500 hover:bg-blue-50 active:bg-blue-100"
               }`}
@@ -251,7 +248,6 @@ const WordList = () => {
       )}
     </div>
   );
-
 };
 
 export default WordList;
