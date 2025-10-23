@@ -16,9 +16,7 @@ const SentenceViewer = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [resetModal, setResetModal] = useState(false);
 
-  const [viewMode, setViewMode] = useState("sentences"); // ✅ default for mobile
-  const [isMobile, setIsMobile] = useState(false);
-
+  const [activeTab, setActiveTab] = useState("sentences");
   const [filterHeading, setFilterHeading] = useState("");
   const { heading } = useParams();
 
@@ -28,16 +26,6 @@ const SentenceViewer = () => {
 
   const token = localStorage.getItem("jwtoken");
   const isAdmin = localStorage.getItem("isAdmin") === "true";
-
-  // ✅ detect screen size
-  useEffect(() => {
-    const checkScreenSize = () => {
-      setIsMobile(window.innerWidth <= 1024);
-    };
-    checkScreenSize();
-    window.addEventListener("resize", checkScreenSize);
-    return () => window.removeEventListener("resize", checkScreenSize);
-  }, []);
 
   useEffect(() => {
     const token = localStorage.getItem("jwtoken");
@@ -147,149 +135,194 @@ const SentenceViewer = () => {
     : data;
 
   return (
-    <div className="page-container">
-      {/* ✅ Mobile toggle buttons */}
-      {isMobile && (
-        <div className="mobile-toggle">
-          <button
-            className={viewMode === "sentences" ? "active" : ""}
-            onClick={() => setViewMode("sentences")}
-          >
-            📖 Sentences
-          </button>
-          <button
-            className={viewMode === "vocab" ? "active" : ""}
-            onClick={() => setViewMode("vocab")}
-          >
-            📝 Vocab
-          </button>
-        </div>
-      )}
+    <div className="sentence-viewer-container">
+      {/* Tab Navigation */}
+      <div className="tab-navigation">
+        <button 
+          className={`tab-button ${activeTab === "sentences" ? "active" : ""}`}
+          onClick={() => setActiveTab("sentences")}
+        >
+          <span className="tab-icon">📖</span>
+          <span className="tab-text">Sentences</span>
+        </button>
+        <button 
+          className={`tab-button ${activeTab === "vocab" ? "active" : ""}`}
+          onClick={() => setActiveTab("vocab")}
+        >
+          <span className="tab-icon">📝</span>
+          <span className="tab-text">Vocabulary</span>
+        </button>
+      </div>
 
-      {/* Sidebar (only show if not mobile OR vocab mode) */}
-      {!isMobile || viewMode === "vocab" ? (
-        <aside className="sidebar">
-          {data.length > 0 && (
-            <VocabList vocab={data.flatMap(group => group.vocab)} />
-          )}
-        </aside>
-      ) : null}
-
-      {/* Main Content (only show if not mobile OR sentences mode) */}
-      {!isMobile || viewMode === "sentences" ? (
-        <main className="main-content">
-          {loading ? (
-            <p className="loading-text">Loading...</p>
-          ) : (
-            <>
-              {isLoggedIn && (
-                <div className="filter-container">
-                  <label htmlFor="headingFilter">Filter by Heading: </label>
-                  <select
-                    id="headingFilter"
-                    value={filterHeading}
-                    onChange={(e) => setFilterHeading(e.target.value)}
-                  >
-                    <option value="">All</option>
-                    {allHeadings.map((heading, idx) => (
-                      <option key={idx} value={heading}>{heading}</option>
-                    ))}
-                  </select>
-                </div>
-              )}
-
-              {filteredData.map((group, index) => (
-                <div className="sentence-card" key={index}>
-                  {group.VideoUrl ? (
-                    <div className="video-container">
-                      <video
-                        src={group.VideoUrl}
-                        autoPlay
-                        muted
-                        loop
-                        playsInline
-                      />
-                    </div>
-                  ) : group.ImageUrl ? (
-                    <div className="image-container">
-                      <img src={group.ImageUrl} alt="Group" />
-                    </div>
-                  ) : null}
-
-                  <h3 className="group-heading">{group.heading}</h3>
-                  <table className="sentence-table">
-                    <thead>
-                      <tr>
-                        <th>Original</th>
-                        <th>Hindi</th>
-                        {isAdmin && <th>Actions</th>}
-                      </tr>
-                    </thead>
-                    <tbody>
-                      {group.translations.map((t, idx) => (
-                        <tr key={idx}>
-                          <td>{t.original}</td>
-                          <td className="hindi-font">{t.hindi}</td>
-                          {isAdmin && (
-                            <td className="action-buttons">
-                              <button onClick={() => handleEdit(t)}>Edit</button>
-                            </td>
-                          )}
-                        </tr>
-                      ))}
-                    </tbody>
-                  </table>
-                </div>
-              ))}
-
-              {/* Pagination */}
-              <div className="flex items-center justify-center space-x-4 mt-6">
-                <button
-                  onClick={() => setPage(p => Math.max(1, p - 1))}
-                  disabled={page === 1}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition
-                    ${page === 1
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 text-white hover:bg-blue-700"}`}
-                >
-                  ⬅️ Previous
-                </button>
-
-                <span className="text-gray-700 font-medium">
-                  Page {page} of {totalPages}
-                </span>
-
-                <button
-                  onClick={() => setPage(p => Math.min(totalPages, p + 1))}
-                  disabled={page === totalPages}
-                  className={`px-4 py-2 rounded-lg text-sm font-medium transition
-                    ${page === totalPages
-                      ? "bg-gray-200 text-gray-400 cursor-not-allowed"
-                      : "bg-blue-600 text-white hover:bg-blue-700"}`}
-                >
-                  Next ➡️
-                </button>
+      {/* Content Area */}
+      <div className="tab-content">
+        {activeTab === "sentences" && (
+          <div className="sentences-tab">
+            {loading ? (
+              <div className="loading-container">
+                <div className="loading-spinner"></div>
+                <p>Loading sentences...</p>
               </div>
+            ) : (
+              <>
+                {isLoggedIn && (
+                  <div className="filter-container">
+                    <label htmlFor="headingFilter">Filter by Heading: </label>
+                    <select
+                      id="headingFilter"
+                      value={filterHeading}
+                      onChange={(e) => setFilterHeading(e.target.value)}
+                      className="heading-filter"
+                    >
+                      <option value="">All</option>
+                      {allHeadings.map((heading, idx) => (
+                        <option key={idx} value={heading}>{heading}</option>
+                      ))}
+                    </select>
+                  </div>
+                )}
 
-              {!isLoggedIn && totalPages >= 5 && (
-                <div className="login-prompt">
-                  <p>
-                    Want to see more sentences? <a href="/login">Login</a> to access all content.
-                  </p>
-                </div>
-              )}
-            </>
-          )}
+                {filteredData.length === 0 ? (
+                  <div className="empty-state">
+                    <p>No sentences found{filterHeading ? ` for "${filterHeading}"` : ""}.</p>
+                  </div>
+                ) : (
+                  <div className="cards-grid">
+                    {filteredData.map((group, index) => (
+                      <div className="group-card" key={index}>
+                        {/* Card Header with Media */}
+                        <div className="card-header">
+                          {group.VideoUrl ? (
+                            <div className="media-container">
+                              <video
+                                src={group.VideoUrl}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                                className="media-element"
+                              />
+                              <div className="media-overlay"></div>
+                            </div>
+                          ) : group.ImageUrl ? (
+                            <div className="media-container">
+                              <img src={group.ImageUrl} alt="Group" className="media-element" />
+                              <div className="media-overlay"></div>
+                            </div>
+                          ) : (
+                            <div className="media-placeholder">
+                              <span>📚</span>
+                            </div>
+                          )}
+                          
+                          <div className="group-heading-section">
+                            <h3 className="group-heading">{group.heading || group.Heading}</h3>
+                            <div className="sentence-count">
+                              {group.translations?.length || 0} sentences
+                            </div>
+                          </div>
+                        </div>
 
-          <EditModal
-            isOpen={modalOpen}
-            onClose={() => setModalOpen(false)}
-            onSubmit={handleUpdate}
-            sentence={selectedSentence}
-            reset={resetModal}
-          />
-        </main>
-      ) : null}
+                        {/* Sentences List */}
+                        <div className="sentences-container">
+                          {group.translations?.map((t, idx) => (
+                            <div className="sentence-card" key={idx}>
+                              <div className="sentence-content">
+                                <div className="language-badge english-badge">EN</div>
+                                <div className="sentence-original">
+                                  {t.original}
+                                </div>
+                                <div className="language-badge hindi-badge">HI</div>
+                                <div className="sentence-hindi hindi-font">
+                                  {t.hindi}
+                                </div>
+                              </div>
+                              
+                              {isAdmin && (
+                                <div className="sentence-actions">
+                                  <button 
+                                    className="edit-btn"
+                                    onClick={() => handleEdit(t)}
+                                    aria-label="Edit sentence"
+                                  >
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                      <path d="M11 4H4C3.46957 4 2.96086 4.21071 2.58579 4.58579C2.21071 4.96086 2 5.46957 2 6V20C2 20.5304 2.21071 21.0391 2.58579 21.4142C2.96086 21.7893 3.46957 22 4 22H18C18.5304 22 19.0391 21.7893 19.4142 21.4142C19.7893 21.0391 20 20.5304 20 20V13" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                      <path d="M18.5 2.5C18.8978 2.10217 19.4374 1.87868 20 1.87868C20.5626 1.87868 21.1022 2.10217 21.5 2.5C21.8978 2.89782 22.1213 3.43739 22.1213 4C22.1213 4.56261 21.8978 5.10217 21.5 5.5L12 15L8 16L9 12L18.5 2.5Z" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                                    </svg>
+                                  </button>
+                                </div>
+                              )}
+                            </div>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Pagination */}
+                {!heading && !filterHeading && (
+                  <div className="pagination-container">
+                    <button
+                      onClick={() => setPage(p => Math.max(1, p - 1))}
+                      disabled={page === 1}
+                      className="pagination-btn prev"
+                    >
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15 18L9 12L15 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                      Previous
+                    </button>
+
+                    <span className="page-indicator">
+                      Page {page} of {totalPages}
+                    </span>
+
+                    <button
+                      onClick={() => setPage(p => Math.min(totalPages, p + 1))}
+                      disabled={page === totalPages}
+                      className="pagination-btn next"
+                    >
+                      Next
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M9 18L15 12L9 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                      </svg>
+                    </button>
+                  </div>
+                )}
+
+                {!isLoggedIn && totalPages >= 5 && (
+                  <div className="login-prompt">
+                    <p>
+                      Want to see more sentences? <a href="/login">Login</a> to access all content.
+                    </p>
+                  </div>
+                )}
+              </>
+            )}
+
+            <EditModal
+              isOpen={modalOpen}
+              onClose={() => setModalOpen(false)}
+              onSubmit={handleUpdate}
+              sentence={selectedSentence}
+              reset={resetModal}
+            />
+          </div>
+        )}
+
+        {activeTab === "vocab" && (
+          <div className="vocab-tab">
+            {data.length > 0 ? (
+              <VocabList vocab={data.flatMap(group => group.vocab)} />
+            ) : (
+              <div className="empty-state">
+                <p>No vocabulary available. View sentences first to see vocabulary.</p>
+              </div>
+            )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };
