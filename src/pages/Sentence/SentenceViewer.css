@@ -124,10 +124,7 @@
   margin-top: 180px; /* Same as header height */
   max-height: calc(100vh - 200px); /* Adjust based on your needs */
   overflow-y: auto;
-<<<<<<< HEAD
   
-=======
->>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
 }
 
 .media-container {
@@ -211,7 +208,6 @@
   margin-bottom: 0;
 }
 
-<<<<<<< HEAD
 
 /* Individual sentence items */
 .sentence-content {
@@ -236,14 +232,6 @@
     rgba(255, 255, 255, 0.4) 80%, 
     transparent 100%
   );
-=======
-.sentence-content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  width: 100%;
->>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
 }
 
 .language-badge {
@@ -262,11 +250,7 @@
 }
 
 .hindi-badge {
-<<<<<<< HEAD
   background: linear-gradient(135deg, #00ffcc, #55ffbb);
-=======
-  background: linear-gradient(135deg, #ef4444, #dc2626);
->>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
   color: white;
 }
 
@@ -554,7 +538,6 @@
 }
 
 @media (max-width: 480px) {
-<<<<<<< HEAD
 
   .page-indicator {
   font-weight: 600;
@@ -562,8 +545,6 @@
   font-size: 0.6rem;
   }
 
-=======
->>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
   .cards-grid {
     grid-template-columns: 1fr;
     gap: 15px;
@@ -625,8 +606,4 @@ body, html {
   width: 100%;
   max-width: 100%;
   overflow-x: hidden;
-<<<<<<< HEAD
 }
-=======
-}
->>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
