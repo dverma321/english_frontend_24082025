@@ -348,4 +348,8 @@ const VocabList = () => {
   );
 };
 
+<<<<<<< HEAD
 export default VocabList;
+=======
+export default VocabList;
+>>>>>>> d784ac2d866d74585e791f7d9ab1e83080012392
