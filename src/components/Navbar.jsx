@@ -73,9 +73,7 @@ const Navbar = () => {
             isAdmin ? (
               <>
                 <li><Link className="nav-link" to="/english"><FontAwesomeIcon icon={faComments} /> English</Link></li>
-                <li><Link className="nav-link" to="/messages"><FontAwesomeIcon icon={faComments} /> Messages</Link></li>
-                <li><Link className="nav-link  d-flex align-items-center" to="/allusers"><FontAwesomeIcon icon={faUser} />  Users</Link></li>
-                <li><Link className="nav-link  d-flex align-items-center" to="/report-issue"> <FontAwesomeIcon icon={faExclamationTriangle} />  Report</Link></li>
+                <li><Link className="nav-link" to="/bulk"><FontAwesomeIcon icon={faComments} /> Bulk Updater</Link></li>
                 <li><Link className="nav-link" to="/logout"><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             ) : (
@@ -100,9 +98,7 @@ const Navbar = () => {
             isAdmin ? (
               <>
                 <li><Link className="nav-link" to="/english" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> English</Link></li>
-                <li><Link className="nav-link" to="/messages" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> Messages</Link></li>
-                <li><Link className="nav-link" to="/allusers" onClick={toggleMenu}><FontAwesomeIcon icon={faUser} /> Users</Link></li>
-                <li><Link className="nav-link" to="/report-issue" onClick={toggleMenu} ><FontAwesomeIcon icon={faExclamationTriangle} /> Report</Link></li>
+                <li><Link className="nav-link" to="/bulk" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> Bulk Updater</Link></li>
                 <li><Link className="nav-link" to="/logout" onClick={toggleMenu}><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             ) : (

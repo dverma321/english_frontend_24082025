@@ -1,0 +1,279 @@
+@font-face {
+  font-family: "KrutiDev";
+  src: url("/fonts/KrutiDev010.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+
+.hindi-font {
+  font-family: "Noto Sans Devanagari", "KrutiDev", sans-serif;
+  font-weight: 500;
+}
+
+/* BulkSentenceEditor.css */
+.bulk-sentence-editor {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+  margin-top: 100px;
+}
+
+.controls-section {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-container {
+  flex: 1;
+  min-width: 300px;
+}
+
+.search-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.search-input {
+  width: 100%;
+  padding: 12px 40px 12px 16px;
+  border: 2px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 16px;
+  transition: border-color 0.3s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+.clear-search-btn {
+  position: absolute;
+  right: 12px;
+  background: #666;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+}
+
+.clear-search-btn:hover {
+  background: #333;
+}
+
+.clear-search-btn.large {
+  position: static;
+  width: auto;
+  height: auto;
+  padding: 10px 20px;
+  border-radius: 6px;
+  margin-top: 10px;
+}
+
+.search-results-info {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+}
+
+.search-term {
+  font-style: italic;
+  margin-left: 8px;
+}
+
+.top-update-container {
+  margin-bottom: 0;
+}
+
+.update-btn {
+  background: #4CAF50;
+  color: white;
+  border: none;
+  padding: 12px 24px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: bold;
+  transition: background 0.3s;
+  white-space: nowrap;
+}
+
+.update-btn:hover {
+  background: #45a049;
+}
+
+.screen-navigation {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  padding: 15px;
+  background: #f5f5f5;
+  border-radius: 8px;
+}
+
+.bottom-navigation {
+  margin-top: 20px;
+}
+
+.nav-btn {
+  background: #2196F3;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.3s;
+}
+
+.nav-btn:hover:not(:disabled) {
+  background: #1976D2;
+}
+
+.nav-btn:disabled {
+  background: #cccccc;
+  cursor: not-allowed;
+}
+
+.screen-indicator {
+  font-weight: bold;
+  color: #333;
+  font-size: 16px;
+}
+
+.sentence-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 600px;
+  overflow-y: auto;
+  padding: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  background: #fafafa;
+}
+
+.sentence-row {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 15px;
+  background: white;
+  border-radius: 6px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.original, .translation {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.lang-badge {
+  background: #666;
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+  min-width: 30px;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.lang-badge.hi {
+  background: #FF9800;
+}
+
+.translation-input {
+  flex: 1;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 14px;
+}
+
+.translation-input:focus {
+  outline: none;
+  border-color: #2196F3;
+  box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.2);
+}
+
+
+.hindi-preview {
+  margin-top: 5px;
+  padding: 5px 10px;
+  background: #f8f9fa;
+  border-radius: 4px;
+  border-left: 3px solid #FF9800;
+  font-size: 14px;
+}
+
+.highlight {
+  background-color: #ffeb3b;
+  padding: 2px 4px;
+  border-radius: 2px;
+  font-weight: bold;
+}
+
+.loading {
+  text-align: center;
+  padding: 40px;
+  font-size: 18px;
+  color: #666;
+}
+
+.no-results {
+  text-align: center;
+  padding: 40px;
+  color: #666;
+}
+
+.no-results p {
+  font-size: 18px;
+  margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+  .bulk-sentence-editor {
+    padding: 10px;
+  }
+  
+  .controls-section {
+    flex-direction: column;
+  }
+  
+  .search-container {
+    min-width: 100%;
+  }
+  
+  .screen-navigation {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .sentence-row {
+    padding: 10px;
+  }
+  
+  .original, .translation {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+}

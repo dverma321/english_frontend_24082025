@@ -1,0 +1,79 @@
+/* AnimatedBackground.css */
+.animated-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background-sentence {
+  position: absolute;
+  font-weight: 300;
+  color: rgba(79, 70, 229, 0.15);
+  text-align: center;
+  opacity: 0;
+  animation: fadeFloat 8s ease-in-out infinite;
+  font-family: 'Georgia', serif;
+  font-style: italic;
+  padding: 0.5rem;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  max-width: 200px;
+  line-height: 1.3;
+  transition: all 2s ease-in-out;
+}
+
+@keyframes fadeFloat {
+  0% {
+    opacity: 0;
+    transform: translateY(20px) rotate(var(--rotation, 0deg)) scale(0.9);
+  }
+  20% {
+    opacity: var(--opacity, 0.3);
+    transform: translateY(0) rotate(var(--rotation, 0deg)) scale(1);
+  }
+  80% {
+    opacity: var(--opacity, 0.3);
+    transform: translateY(-10px) rotate(var(--rotation, 0deg)) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateY(-20px) rotate(var(--rotation, 0deg)) scale(0.9);
+  }
+}
+
+/* Different colors for variety */
+.background-sentence:nth-child(3n) {
+  color: rgba(236, 72, 153, 0.15);
+}
+
+.background-sentence:nth-child(3n+1) {
+  color: rgba(79, 70, 229, 0.15);
+}
+
+.background-sentence:nth-child(3n+2) {
+  color: rgba(16, 185, 129, 0.15);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .background-sentence {
+    max-width: 150px;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .background-sentence {
+    max-width: 120px;
+    font-size: 0.8rem !important;
+  }
+  
+  .animated-background {
+    /* Show fewer sentences on mobile */
+    overflow: hidden;
+  }
+}

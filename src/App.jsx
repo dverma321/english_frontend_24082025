@@ -15,10 +15,13 @@ import Loading from './pages/Loading.jsx';
 
 import ReportedIssues from './pages/Report/ReportIssue.jsx';
 import GemCoins from './pages/Gems/Gems.jsx';
-import HomePage from './pages/Home/HomePage.jsx';
+// import HomePage from './pages/Home/HomePage.jsx';
 import SentenceViewer from './pages/Sentence/SentenceViewer.jsx';
 import Registration from './pages/Registration.jsx';
+import New_Registration from './pages/Registration/New_Registration.jsx';
 import CompleteProfile from './pages/CompleteProfile.jsx';
+import OCR from './pages/OCR/OCR.jsx';
+import {BulkSentenceEditor} from './pages/Admin/BulkSentenceEditor.jsx';
 
 export const userContext = createContext();
 
@@ -54,7 +57,7 @@ function App() {
               ) : state.isAuthenticated ? ( // Show welcome message if authenticated
                 <SentenceViewer />
               ) : ( // Otherwise, show the Main component
-                <HomePage />
+                <SentenceViewer />
               )
             }
           />
@@ -64,7 +67,13 @@ function App() {
             element={state.isAuthenticated ? <SentenceViewer /> : <LoginPage />}
           />
 
-          <Route path="/registration" element={state.isAuthenticated ? <SentenceViewer /> : <Registration />} />
+          <Route
+            path="/ocr"
+            element={state.isAuthenticated ? <OCR /> : <LoginPage />}
+          />
+
+          {/* <Route path="/registration" element={state.isAuthenticated ? <SentenceViewer /> : <Registration />} /> */}
+          <Route path="/registration" element={state.isAuthenticated ? <SentenceViewer /> : <New_Registration />} />
           <Route path="/complete-profile" element={<CompleteProfile />} />
           <Route path="/forgot-password"  element={state.isAuthenticated ? <SentenceViewer /> : <ForgotPassword />} />
           <Route path="/reset-password/:id/:token" element={<ResetPassword />} />
@@ -77,9 +86,7 @@ function App() {
           {/* For English  */}
           <Route path="/english" element={<SentenceViewer />} />
 
-
-
-
+          <Route path="/bulk" element={<BulkSentenceEditor />} />
         </Routes>
       </BrowserRouter>
     </userContext.Provider>
