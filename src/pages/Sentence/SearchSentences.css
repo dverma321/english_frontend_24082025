@@ -1,0 +1,142 @@
+.search-sentences-container {  
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  margin-top: 100px;
+}
+
+.search-heading {
+  text-align: center;
+  margin-bottom: 1rem;
+  color: #333;
+}
+
+.search-form {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 1.5rem;
+}
+
+.search-input {
+  flex: 1;
+  max-width: 500px;
+  padding: 10px 14px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+.search-btn {
+  background: #4b6cb7;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 16px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.search-btn:hover {
+  background: #39539a;
+}
+
+.loading-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.spinner {
+  width: 28px;
+  height: 28px;
+  border: 4px solid #eee;
+  border-top-color: #4b6cb7;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 8px;
+}
+
+.heading-label { background: #e3e7ff; padding: 4px 8px; border-radius: 6px; font-size: 14px;   }
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+.results-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(400px, 1fr)); /* 3 cards per row depending on screen size */
+  gap: 1.5rem;
+  justify-items: center;
+  background: rgba(255, 255, 255, 0.1);
+
+}
+
+.result-card {
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+  width: 100%;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;  
+  
+}
+
+.result-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.sentence-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+
+.lang-box {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.lang-box.en {
+  border-left: 4px solid #4b6cb7;
+}
+
+.lang-box.hi {
+  border-left: 4px solid #ffb347;
+}
+
+.lang-label {
+  font-weight: bold;
+  margin-right: 8px;
+  color: #666;
+}
+
+.sentence-text {
+  margin: 4px 0 0 0;
+}
+
+.no-results {
+  text-align: center;
+  color: #666;
+  margin-top: 2rem;
+}
+
+.no-translation {
+  color: #999;
+  font-style: italic;
+}
+
+/* Mobile (1 per row) */
+@media (max-width: 600px) {
+  .results-list {
+    grid-template-columns: 1fr;
+  }
+
+  .result-card {
+    max-width: 100%;
+  }
+}
