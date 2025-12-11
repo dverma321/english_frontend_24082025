@@ -73,11 +73,13 @@ const Navbar = () => {
             isAdmin ? (
               <>
                 <li><Link className="nav-link" to="/english"><FontAwesomeIcon icon={faComments} /> English</Link></li>
-                <li><Link className="nav-link" to="/bulk"><FontAwesomeIcon icon={faComments} /> Bulk Updater</Link></li>
+                <li><Link className="nav-link" to="/search-sentence"><FontAwesomeIcon icon={faComments} /> Search Sentences</Link></li>
+                <li><Link className="nav-link" to="/bulk"><FontAwesomeIcon icon={faComments} /> Bulk Translation</Link></li>
                 <li><Link className="nav-link" to="/logout"><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             ) : (
               <>
+                <li><Link className="nav-link" to="/search-sentences"><FontAwesomeIcon icon={faDoorOpen} /> Search Sentences</Link></li>
                 <li><Link className="nav-link" to="/logout"><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             )
@@ -98,11 +100,13 @@ const Navbar = () => {
             isAdmin ? (
               <>
                 <li><Link className="nav-link" to="/english" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> English</Link></li>
-                <li><Link className="nav-link" to="/bulk" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> Bulk Updater</Link></li>
+                <li><Link className="nav-link" to="/search-sentences" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> Search Sentences</Link></li>
+                <li><Link className="nav-link" to="/bulk" onClick={toggleMenu}><FontAwesomeIcon icon={faComments} /> Bulk Translation</Link></li>
                 <li><Link className="nav-link" to="/logout" onClick={toggleMenu}><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             ) : (
               <>
+                <li><Link className="nav-link" to="/search-sentences" onClick={toggleMenu}><FontAwesomeIcon icon={faDoorOpen} /> Search Sentences</Link></li>
                 <li><Link className="nav-link" to="/logout" onClick={toggleMenu}><FontAwesomeIcon icon={faDoorOpen} /> Logout</Link></li>
               </>
             )
